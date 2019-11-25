@@ -1,0 +1,32 @@
+XLNET_DIR=/media/data/nlp_models/chinese_xlnet_base_L-12_H-768_A-12
+MODEL_DIR=/media/data/checkpoints/xlnet_output
+DATA_DIR=./tfrecords
+RAW_DIR=/media/data/CCF_data/car_forum_data
+TPU_NAME=v2-xlnet
+TPU_ZONE=us-central1-b
+
+python -u run_classifier.py \
+	--spiece_model_file=./spiece.model \
+	--model_config_path=${XLNET_DIR}/xlnet_config.json \
+	--init_checkpoint=${XLNET_DIR}/xlnet_model.ckpt \
+	--task_name=carforum \
+	--do_train=True \
+	--do_eval=True \
+	--do_predict=True \
+	--eval_all_ckpt=False \
+	--uncased=False \
+	--data_dir=${RAW_DIR} \
+	--output_dir=${DATA_DIR} \
+	--predict_dir=$RAW_DIR \
+	--model_dir=${MODEL_DIR} \
+	--train_batch_size=8 \
+	--eval_batch_size=8 \
+	--num_hosts=1 \
+	--num_core_per_host=1 \
+	--num_train_epochs=30 \
+	--max_seq_length=256 \
+	--learning_rate=2e-5 \
+	--save_steps=1000 \
+	--use_tpu=False \
+	--tpu=${TPU_NAME} \
+	--tpu_zone=${TPU_ZONE}

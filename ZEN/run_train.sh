@@ -1,0 +1,12 @@
+python run_sequence_level_classification.py \
+    --task_name carforum \
+    --do_train \
+    --do_eval \
+    --do_predict \
+    --do_lower_case \
+    --data_dir /media/data/CCF_data/car_forum_data \
+    --bert_model /media/data/nlp_models/ZEN_pretrain_base_v0.1.0/ \
+    --max_seq_length 256 \
+    --train_batch_size 12 \
+    --learning_rate 2e-5 \
+    --num_train_epochs 30.0

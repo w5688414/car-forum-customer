@@ -1,0 +1,11 @@
+python run_sequence_level_classification.py \
+    --task_name ChnSentiCorp \
+    --do_train \
+    --do_eval \
+    --do_lower_case \
+    --data_dir /media/data/ChnSentiCorp情感分析酒店评论 \
+    --bert_model bert-base-chinese \
+    --max_seq_length 512 \
+    --train_batch_size 32 \
+    --learning_rate 2e-5 \
+    --num_train_epochs 30.0
